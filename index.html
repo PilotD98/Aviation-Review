@@ -7,7 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Recurrent">
-<meta name="theme-color" content="#0B1120">
+<meta name="theme-color" content="#0E0F12">
 <meta name="description" content="Recurrent — an aviation knowledge refresher for returning pilots.">
 <title>Recurrent</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,16 +16,16 @@
 <style>
 /* ---------- Tokens ---------- */
 :root {
-  --bg: #0B1120;
-  --bg-glow: rgba(242,181,68,0.10);
-  --surface: rgba(19,28,46,0.82);
-  --surface-solid: #131C2E;
-  --raised: #1A2538;
-  --line: rgba(173,190,220,0.14);
-  --line-strong: rgba(173,190,220,0.28);
-  --text: #E9EEF6;
-  --text-2: #A9B4C7;
-  --text-3: #6F7D96;
+  --bg: #0E0F12;
+  --bg-glow: rgba(242,181,68,0.08);
+  --surface: rgba(24,25,29,0.84);
+  --surface-solid: #18191D;
+  --raised: #202126;
+  --line: rgba(200,205,215,0.12);
+  --line-strong: rgba(200,205,215,0.26);
+  --text: #ECEEF1;
+  --text-2: #A8ADB7;
+  --text-3: #767C88;
   --amber: #F2B544;
   --amber-ink: #1A1200;
   --amber-soft: rgba(242,181,68,0.16);
@@ -36,8 +36,9 @@
   --bad: #F26D6D;
   --bad-soft: rgba(242,109,109,0.18);
   --hard: #F2B544;
+  --on-good: #04120B;
   --shadow: 0 10px 30px rgba(0,0,0,0.35);
-  --nav-bg: rgba(11,17,32,0.86);
+  --nav-bg: rgba(14,15,18,0.88);
   --radius-card: 20px;
   --radius-btn: 14px;
   --font-display: "Bricolage Grotesque", "Avenir Next Condensed", "Helvetica Neue", system-ui, sans-serif;
@@ -56,17 +57,18 @@
     --line-strong: rgba(20,30,55,0.22);
     --text: #141C2C;
     --text-2: #4A5569;
-    --text-3: #7A849A;
-    --amber: #A86B05;
+    --text-3: #606A84;
+    --amber: #9A6100;
     --amber-ink: #FFFFFF;
     --amber-soft: rgba(201,131,10,0.14);
     --cyan: #0E7F8E;
     --cyan-soft: rgba(14,127,142,0.12);
-    --good: #138A5D;
+    --good: #0F7A51;
     --good-soft: rgba(19,138,93,0.14);
     --bad: #C9403F;
     --bad-soft: rgba(201,64,63,0.12);
-    --hard: #A86B05;
+    --hard: #9A6100;
+    --on-good: #FFFFFF;
     --shadow: 0 10px 30px rgba(20,30,55,0.10);
     --nav-bg: rgba(242,244,248,0.88);
     color-scheme: light;
@@ -82,17 +84,18 @@
   --line-strong: rgba(20,30,55,0.22);
   --text: #141C2C;
   --text-2: #4A5569;
-  --text-3: #7A849A;
-  --amber: #A86B05;
+  --text-3: #606A84;
+  --amber: #9A6100;
   --amber-ink: #FFFFFF;
   --amber-soft: rgba(201,131,10,0.14);
   --cyan: #0E7F8E;
   --cyan-soft: rgba(14,127,142,0.12);
-  --good: #138A5D;
+  --good: #0F7A51;
   --good-soft: rgba(19,138,93,0.14);
   --bad: #C9403F;
   --bad-soft: rgba(201,64,63,0.12);
-  --hard: #A86B05;
+  --hard: #9A6100;
+  --on-good: #FFFFFF;
   --shadow: 0 10px 30px rgba(20,30,55,0.10);
   --nav-bg: rgba(242,244,248,0.88);
   color-scheme: light;
@@ -147,9 +150,9 @@ main {
   border-top: 1px solid var(--line);
 }
 .tab {
-  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
-  min-height: 52px; padding: 6px 2px; border: 0; background: none; border-radius: 12px;
-  color: var(--text-3); font-size: 0.72rem; font-weight: 500;
+  flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px;
+  min-height: 52px; padding: 6px 0; border: 0; background: none; border-radius: 12px;
+  color: var(--text-3); font-size: 0.68rem; font-weight: 500; white-space: nowrap; letter-spacing: -0.01em;
   transition: color .15s;
 }
 .tab svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
@@ -253,8 +256,9 @@ input[type="checkbox"] { width: 24px; height: 24px; accent-color: var(--amber); 
 .due-num.zero { color: var(--good); }
 .due-label { color: var(--text-2); margin-top: 4px; }
 .hero-actions { margin-top: 14px; display: grid; gap: 10px; }
-.topic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-@media (min-width: 600px) { .topic-grid { grid-template-columns: repeat(3, 1fr); } }
+.topic-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.topic-card { min-width: 0; overflow-wrap: anywhere; }
+@media (min-width: 600px) { .topic-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .topic-card {
   display: flex; flex-direction: column; gap: 10px; text-align: left; padding: 14px;
   border: 1px solid var(--line); border-radius: 16px; background: var(--surface);
@@ -310,7 +314,7 @@ input[type="checkbox"] { width: 24px; height: 24px; accent-color: var(--amber); 
 }
 .choice:not(:disabled):active { transform: scale(.985); }
 .choice.correct { border-color: var(--good); background: var(--good-soft); }
-.choice.correct .kbd { background: var(--good); color: #04120B; }
+.choice.correct .kbd { background: var(--good); color: var(--on-good); }
 .choice.wrong { border-color: var(--bad); background: var(--bad-soft); }
 .choice.wrong .kbd { background: var(--bad); color: #fff; }
 .choice.dim { opacity: .5; }
@@ -381,6 +385,67 @@ input[type="checkbox"] { width: 24px; height: 24px; accent-color: var(--amber); 
 .type-row { display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--line); font-size: .9rem; }
 .type-row:first-child { border-top: 0; }
 .type-row span:last-child { color: var(--text-2); font-variant-numeric: tabular-nums; }
+.topic-row .sub { grid-column: 1 / -1; font-size: .75rem; color: var(--text-3); margin-top: -2px; }
+
+/* ---------- Learn ---------- */
+.search { position: relative; margin-top: 14px; }
+.search input { padding-left: 40px; }
+.search svg { position: absolute; left: 13px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); stroke: var(--text-3); fill: none; stroke-width: 2; stroke-linecap: round; pointer-events: none; }
+.learn-prog { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+.learn-prog .bar { flex: 1; }
+.learn-prog span { font-size: .82rem; color: var(--text-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.lesson-group { margin-top: 22px; }
+.lesson-group h2 { font-size: 1.05rem; color: var(--text-2); margin-bottom: 8px; }
+.lesson-list { display: grid; gap: 8px; }
+.lesson-row {
+  display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; align-items: center; width: 100%; text-align: left;
+  padding: 13px 14px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface);
+  transition: border-color .15s, transform .12s;
+}
+.lesson-row:active { transform: scale(.985); }
+.lesson-row .ttl { grid-column: 1; grid-row: 1; font-family: var(--font-display); font-weight: 600; font-size: 1rem; line-height: 1.2; }
+.lesson-row .meta { grid-column: 1; grid-row: 2; font-size: .78rem; color: var(--text-3); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.lesson-row .meta .tagchip { white-space: nowrap; }
+.lesson-row .read { grid-column: 2; grid-row: 1 / span 2; width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line-strong); color: transparent; }
+.lesson-row.done .read { background: var(--good); border-color: var(--good); color: var(--on-good); }
+.lesson-row .read svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.tagchip { display: inline-block; padding: 1px 7px; border-radius: 999px; background: var(--amber-soft); color: var(--amber); font-size: .68rem; font-weight: 500; }
+.lesson-head { margin-top: 10px; }
+.lesson-head .topic { color: var(--cyan); font-size: .82rem; font-weight: 500; }
+.lesson-head h1 { font-size: 1.7rem; margin-top: 4px; }
+.lesson-head .pills { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.lesson-body { margin-top: 18px; font-size: 1.02rem; line-height: 1.6; }
+.lesson-body h3 { margin-top: 24px; margin-bottom: 8px; font-size: 1.15rem; }
+.lesson-body h3:first-child { margin-top: 0; }
+.lesson-body p { margin-top: 10px; }
+.lesson-body ul, .lesson-body ol { margin: 10px 0 0; padding-left: 22px; }
+.lesson-body li { margin-top: 5px; }
+.lesson-body li::marker { color: var(--cyan); }
+.lesson-body b { font-weight: 600; color: var(--text); }
+.tbl-wrap { margin-top: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.tbl-wrap table { border-collapse: collapse; width: 100%; min-width: 320px; font-size: .92rem; }
+.tbl-wrap th, .tbl-wrap td { text-align: left; padding: 9px 12px; border-top: 1px solid var(--line); vertical-align: top; white-space: nowrap; }
+.tbl-wrap th { border-top: 0; font-weight: 500; color: var(--text-3); font-size: .78rem; }
+.tbl-wrap td:first-child { font-family: var(--font-display); font-weight: 600; }
+.callout { margin-top: 14px; padding: 11px 14px; border-left: 3px solid var(--cyan); background: var(--cyan-soft); border-radius: 0 12px 12px 0; font-size: .95rem; }
+.callout.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.callout.memo { border-left-color: var(--amber); background: var(--amber-soft); }
+.callout .k { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; margin-bottom: 2px; color: var(--cyan); }
+.callout.warn .k { color: var(--bad); }
+.callout.memo .k { color: var(--amber); }
+.memo-card { margin-top: 16px; padding: 18px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line-strong); box-shadow: var(--shadow); text-align: center; }
+.memo-card .lbl { font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); }
+.memo-card .big { font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; color: var(--amber); letter-spacing: -0.02em; line-height: 1.1; margin-top: 4px; }
+.memo-card .txt { margin-top: 8px; color: var(--text-2); font-size: .95rem; }
+.lesson-foot { margin-top: 26px; display: grid; gap: 10px; }
+.continue-card { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; width: 100%; text-align: left; margin-top: 10px; }
+.continue-card .lbl { font-size: .75rem; color: var(--cyan); font-weight: 500; }
+.continue-card .ttl { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; margin-top: 2px; }
+.continue-card .meta { font-size: .78rem; color: var(--text-3); margin-top: 2px; }
+.continue-card svg { width: 22px; height: 22px; stroke: var(--text-3); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.lesson-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 6px 0; background: none; border: 0; color: var(--cyan); font-size: .88rem; font-weight: 500; text-align: left; }
+.lesson-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.miss .lesson-link { margin-top: 4px; padding: 4px 0; }
 
 /* ---------- Overlays ---------- */
 .toast {
@@ -450,6 +515,9 @@ input[type="checkbox"] { width: 24px; height: 24px; accent-color: var(--amber); 
 <script src="data-airspace.js"></script>
 <script src="data-aeromed.js"></script>
 <script src="data-foi.js"></script>
+<script src="data-more.js"></script>
+<script src="data-lessons-a.js"></script>
+<script src="data-lessons-b.js"></script>
 <script>
 (function () {
 'use strict';
@@ -471,6 +539,10 @@ var TOPICS = [
   ['systems', 'Aircraft Systems'],
   ['airspace', 'Airspace & Airport Ops'],
   ['aeromed', 'Aeromedical & ADM'],
+  ['perf', 'Performance & W&B'],
+  ['comms', 'Comms & ATC'],
+  ['emerg', 'Emergency Procedures'],
+  ['hialt', 'High-Altitude & Turbine'],
   ['foi', 'Instructing (FOI)']
 ];
 var TOPIC_LABEL = {};
@@ -483,8 +555,8 @@ var MODES = [
   ['oral', 'Oral exam', ['oral']],
   ['mixed', 'Mixed', ['mcq', 'card', 'scenario', 'oral']]
 ];
-var TAGS = ['ipc', 'flight-review', 'atp', 'part135', 'cfi', 'c172', 'pa44'];
-var TAG_LABEL = { ipc: 'IPC', 'flight-review': 'Flight review', atp: 'ATP', part135: 'Part 135', cfi: 'CFI', c172: 'C172', pa44: 'PA-44' };
+var TAGS = ['ipc', 'flight-review', 'atp', 'part135', 'cfi', 'c172', 'pa44', 'cax', 'ira', 'kt'];
+var TAG_LABEL = { ipc: 'IPC', 'flight-review': 'Flight review', atp: 'ATP', part135: 'Part 135', cfi: 'CFI', c172: 'C172', pa44: 'PA-44', cax: 'Commercial ACS', ira: 'Instrument ACS', kt: 'Knowledge test' };
 
 var AIRCRAFT = [
   {
@@ -596,23 +668,43 @@ var CHECKLIST = [
 /* =========================================================
    Storage
    ========================================================= */
+var STORE_VERSION = 2;
 function defaultStore() {
-  return { theme: 'dark', items: {}, checklist: {}, notes: '', medical: '', sessions: 0 };
+  return { version: STORE_VERSION, theme: 'dark', items: {}, checklist: {}, notes: '', medical: '', sessions: 0, lessonsRead: {} };
+}
+function isObj(o) { return !!o && typeof o === 'object' && !Array.isArray(o); }
+/* Bring any older store shape up to the current version without losing progress. */
+function migrate(st) {
+  if (!isObj(st)) st = {};
+  st = Object.assign(defaultStore(), st);
+  if (!isObj(st.items)) st.items = {};
+  if (!isObj(st.checklist)) st.checklist = {};
+  if (typeof st.notes !== 'string') st.notes = '';
+  if (typeof st.medical !== 'string') st.medical = '';
+  if (typeof st.sessions !== 'number' || !isFinite(st.sessions)) st.sessions = 0;
+  if (!st.version || st.version < 2) { if (!isObj(st.lessonsRead)) st.lessonsRead = {}; }
+  if (!isObj(st.lessonsRead)) st.lessonsRead = {};
+  st.version = STORE_VERSION;
+  return st;
 }
 var store = defaultStore();
 function load() {
+  var raw = null;
+  try { raw = localStorage.getItem(STORE_KEY); } catch (e) { raw = null; }
+  if (!raw) return;
   try {
-    var raw = localStorage.getItem(STORE_KEY);
-    if (raw) {
-      var parsed = JSON.parse(raw);
-      if (parsed && typeof parsed === 'object') store = Object.assign(defaultStore(), parsed);
-      if (!store.items || typeof store.items !== 'object') store.items = {};
-      if (!store.checklist || typeof store.checklist !== 'object') store.checklist = {};
-    }
+    var parsed = JSON.parse(raw);
+    store = migrate(parsed);
   } catch (e) { store = defaultStore(); }
 }
+var saveWarned = false;
 function save() {
-  try { localStorage.setItem(STORE_KEY, JSON.stringify(store)); } catch (e) { /* storage unavailable */ }
+  try {
+    localStorage.setItem(STORE_KEY, JSON.stringify(store));
+    saveWarned = false;
+  } catch (e) {
+    if (!saveWarned) { saveWarned = true; toast('Progress could not be saved (storage full or blocked).'); }
+  }
 }
 
 /* =========================================================
@@ -668,6 +760,64 @@ function loadBank() {
 function itemsByTopic(topic) { return BANK.filter(function (i) { return i.topic === topic; }); }
 function hasTag(it, tag) { return Array.isArray(it.tags) && it.tags.indexOf(tag) !== -1; }
 function dueCount() { var n = Date.now(); return BANK.filter(function (i) { return isDue(i.id, n); }).length; }
+function topicsWithItems() { return TOPICS.filter(function (t) { return itemsByTopic(t[0]).length > 0; }); }
+
+/* ---- Lessons ---- */
+var LESSONS = [];
+function loadLessons() {
+  var raw = (window.LESSONS && Array.isArray(window.LESSONS)) ? window.LESSONS : [];
+  var seen = {};
+  LESSONS = raw.filter(function (l) {
+    if (!l || typeof l !== 'object' || !l.id || !l.topic || !l.title || !Array.isArray(l.body)) return false;
+    if (seen[l.id]) return false;
+    seen[l.id] = true;
+    return true;
+  });
+  /* Group by TOPICS order, then by the order they were declared. */
+  var rank = {}; TOPICS.forEach(function (t, i) { rank[t[0]] = i; });
+  LESSONS.sort(function (a, b) {
+    var ra = rank[a.topic] === undefined ? 999 : rank[a.topic], rb = rank[b.topic] === undefined ? 999 : rank[b.topic];
+    return ra - rb;
+  });
+}
+function lessonById(id) { return LESSONS.filter(function (l) { return l.id === id; })[0] || null; }
+function lessonRead(id) { return !!(store.lessonsRead && store.lessonsRead[id]); }
+function lessonsReadCount() { return LESSONS.filter(function (l) { return lessonRead(l.id); }).length; }
+function lessonsByTopic(topic) { return LESSONS.filter(function (l) { return l.topic === topic; }); }
+function itemText(it) {
+  return [it.q, it.front, it.back, it.exp, it.answer].concat(Array.isArray(it.points) ? it.points : []).filter(Boolean).join(' ').toLowerCase();
+}
+function keywordHit(l, it) {
+  if (!Array.isArray(l.keywords) || !l.keywords.length) return false;
+  var txt = itemText(it);
+  return l.keywords.some(function (k) { k = String(k || '').trim().toLowerCase(); return k && txt.indexOf(k) !== -1; });
+}
+/* Items a lesson's "Quiz this lesson" draws from: explicit quiz ids, else keyword matches in its topic, else the whole topic. */
+function lessonQuizItems(l) {
+  var items = [];
+  if (Array.isArray(l.quiz) && l.quiz.length) {
+    var want = {}; l.quiz.forEach(function (id) { want[id] = true; });
+    items = BANK.filter(function (i) { return want[i.id]; });
+  }
+  if (!items.length) {
+    var topicItems = itemsByTopic(l.topic);
+    items = topicItems.filter(function (i) { return keywordHit(l, i); });
+    if (!items.length) items = topicItems;
+  }
+  return shuffle(items).slice(0, 15);
+}
+/* The lesson that best covers an item: same topic, listed in its quiz, else a keyword match. Cached per item. */
+var lessonForCache = {};
+function lessonForItem(it) {
+  if (!it) return null;
+  if (Object.prototype.hasOwnProperty.call(lessonForCache, it.id)) return lessonForCache[it.id];
+  var same = lessonsByTopic(it.topic), found = null;
+  for (var i = 0; i < same.length && !found; i++) { if (Array.isArray(same[i].quiz) && same[i].quiz.indexOf(it.id) !== -1) found = same[i]; }
+  for (var j = 0; j < same.length && !found; j++) { if (keywordHit(same[j], it)) found = same[j]; }
+  lessonForCache[it.id] = found;
+  return found;
+}
+function firstUnreadLesson() { return LESSONS.filter(function (l) { return !lessonRead(l.id); })[0] || null; }
 
 /* =========================================================
    Helpers
@@ -676,6 +826,8 @@ function esc(s) {
   if (s === null || s === undefined) return '';
   return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
 }
+/* Escape first, then allow only **bold** through. */
+function escMd(s) { return esc(s).replace(/\*\*([^*]+?)\*\*/g, '<b>$1</b>'); }
 function shuffle(a) {
   a = a.slice();
   for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
@@ -736,7 +888,7 @@ function applyTheme() {
   else root.removeAttribute('data-theme'); /* 'system': follow prefers-color-scheme */
   var dark = store.theme === 'dark' || (store.theme !== 'light' && !(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches));
   var meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute('content', dark ? '#0B1120' : '#F2F4F8');
+  if (meta) meta.setAttribute('content', dark ? '#0E0F12' : '#F2F4F8');
 }
 function currentThemeIsDark() {
   return document.documentElement.getAttribute('data-theme') === 'dark' ||
@@ -754,6 +906,7 @@ function toggleTheme() {
 var NAV = [
   ['home', 'Home', '<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>'],
   ['study', 'Study', '<path d="M4 5a2 2 0 0 1 2-2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>'],
+  ['learn', 'Learn', '<path d="M12 6.5C10.5 5 8.3 4.5 3 4.5v13c5.3 0 7.5.5 9 2 1.5-1.5 3.7-2 9-2v-13c-5.3 0-7.5.5-9 2z"/><path d="M12 6.5v13"/>'],
   ['aircraft', 'Aircraft', '<path d="M2 14l9-2V5.5a1.5 1.5 0 0 1 3 0V12l8 2v2l-8-1v3l2 1.5V21l-3.5-1L9 21v-1.5L11 18v-3l-9 1z"/>'],
   ['checklist', 'Checklist', '<path d="M9 5h10M9 12h10M9 19h10"/><path d="M4 5l1 1 2-2M4 12l1 1 2-2M4 19l1 1 2-2"/>'],
   ['stats', 'Stats', '<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>']
@@ -769,7 +922,39 @@ function renderNav() {
   document.getElementById('tabbar').innerHTML = navHtml();
   document.getElementById('sidenav-tabs').innerHTML = navHtml();
 }
-function go(v) { view = v; render(); window.scrollTo(0, 0); }
+var learnId = null;   /* lesson open in the Learn tab, or null for the index */
+var learnQ = '';      /* Learn index search text */
+function clearLearnHash() {
+  if (location.hash.indexOf('#learn') === 0 && window.history && history.replaceState) {
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { /* file: URLs in some browsers */ }
+  }
+}
+function go(v) {
+  view = v;
+  if (v === 'learn') { learnId = null; if (location.hash !== '#learn') { location.hash = '#learn'; return; } }
+  else clearLearnHash();
+  render(); window.scrollTo(0, 0);
+}
+function openLesson(id) {
+  if (!lessonById(id)) { toast('That lesson is not available.'); return; }
+  view = 'learn'; learnId = id;
+  var want = '#learn/' + encodeURIComponent(id);
+  if (location.hash !== want) { location.hash = want; return; }   /* hashchange renders */
+  render(); window.scrollTo(0, 0);
+}
+function routeFromHash() {
+  var h = location.hash || '';
+  if (h.indexOf('#learn') !== 0) {
+    if (view === 'learn') { view = 'home'; render(); window.scrollTo(0, 0); }
+    return;
+  }
+  var id = h.length > 7 && h.charAt(6) === '/' ? decodeURIComponent(h.slice(7)) : '';
+  view = 'learn';
+  learnId = id && lessonById(id) ? id : null;
+  if (id && !learnId) toast('That lesson is not available.');
+  render(); window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', routeFromHash);
 
 /* =========================================================
    Views
@@ -777,13 +962,14 @@ function go(v) { view = v; render(); window.scrollTo(0, 0); }
 function render() {
   renderNav();
   var el = document.getElementById('view');
-  if (!BANK.length && view !== 'aircraft' && view !== 'checklist' && view !== 'stats') {
+  if (!BANK.length && view !== 'aircraft' && view !== 'checklist' && view !== 'stats' && view !== 'learn') {
     el.innerHTML = viewHomeEmpty();
     return;
   }
   switch (view) {
     case 'home': el.innerHTML = viewHome(); break;
     case 'study': el.innerHTML = viewStudy(); break;
+    case 'learn': el.innerHTML = learnId ? viewLesson(learnId) : viewLearnIndex(); break;
     case 'aircraft': el.innerHTML = viewAircraft(); break;
     case 'checklist': el.innerHTML = viewChecklist(); break;
     case 'stats': el.innerHTML = viewStats(); break;
@@ -808,12 +994,25 @@ function viewHome() {
   h += '<div class="hero-actions">' +
     '<button class="btn primary lg block" type="button" data-action="smart">Smart session</button>' +
     '<button class="btn lg block" type="button" data-action="diagnostic">Diagnostic — 20 questions</button></div>';
+  if (LESSONS.length) {
+    var nl = firstUnreadLesson();
+    if (nl) {
+      h += '<button class="card continue-card" type="button" data-action="open-lesson" data-id="' + esc(nl.id) + '"><div>' +
+        '<div class="lbl">Continue learning · ' + lessonsReadCount() + ' of ' + LESSONS.length + ' read</div><div class="ttl">' + esc(nl.title) + '</div>' +
+        '<div class="meta">' + esc(TOPIC_LABEL[nl.topic] || nl.topic) + ' · ' + esc(nl.minutes || '?') + ' min read</div></div>' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>';
+    } else {
+      h += '<button class="card continue-card" type="button" data-action="nav" data-view="learn"><div>' +
+        '<div class="lbl">Learn</div><div class="ttl">All lessons read</div><div class="meta">' + LESSONS.length + ' lessons · open the Learn tab to re-read any of them</div></div>' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>';
+    }
+  }
   h += '<div class="section"><div class="section-head"><h2>Topics</h2><span class="tiny">' + BANK.length + ' items</span></div><div class="topic-grid">';
-  TOPICS.forEach(function (t) {
+  topicsWithItems().forEach(function (t) {
     var p = topicProgress(t[0]);
-    h += '<button class="topic-card" type="button" data-action="topic" data-topic="' + t[0] + '"' + (p.total ? '' : ' disabled') + '>' +
+    h += '<button class="topic-card" type="button" data-action="topic" data-topic="' + esc(t[0]) + '">' +
       '<div class="top"><span class="name">' + esc(t[1]) + '</span>' + ring(p.pct, 34) + '</div>' +
-      '<div class="meta">' + (p.total ? p.total + ' items<br><b>' + p.pct + '%</b> mastered' : 'No items yet') + '</div></button>';
+      '<div class="meta">' + p.total + ' items<br><b>' + p.pct + '%</b> mastered</div></button>';
   });
   h += '</div></div>';
   return h;
@@ -830,8 +1029,8 @@ function viewStudy() {
   h += '</div></div>';
   h += '<div class="field"><span class="lbl">Topics</span><div class="chips">' +
     '<button class="chip" type="button" data-action="study-topic" data-v="all" aria-pressed="' + (study.topics.length === 0) + '">All</button>';
-  TOPICS.forEach(function (t) {
-    h += '<button class="chip" type="button" data-action="study-topic" data-v="' + t[0] + '" aria-pressed="' + (study.topics.indexOf(t[0]) !== -1) + '">' + esc(t[1]) + '</button>';
+  topicsWithItems().forEach(function (t) {
+    h += '<button class="chip" type="button" data-action="study-topic" data-v="' + esc(t[0]) + '" aria-pressed="' + (study.topics.indexOf(t[0]) !== -1) + '">' + esc(t[1]) + '</button>';
   });
   h += '</div></div>';
   h += '<div class="field"><span class="lbl">Length</span><div class="seg" role="group" aria-label="Session length">';
@@ -846,8 +1045,12 @@ function viewStudy() {
   h += '</div><p class="hint">Leave these off to include everything. Selecting several keeps items that carry any of them.</p></div>';
   var pool = studyPool();
   var dueN = pool.filter(function (i) { return isDue(i.id); }).length;
-  h += '<div class="sticky-start"><button class="btn primary lg block" type="button" data-action="study-start"' + (pool.length ? '' : ' disabled') + '>Start</button>' +
-    '<p class="tiny" style="text-align:center;margin-top:8px">' + pool.length + ' items match · ' + dueN + ' due</p></div>';
+  var canStart = pool.length > 0 && !(study.length === 'due' && dueN === 0);
+  var line = pool.length + ' items match · ' + dueN + ' due';
+  if (!pool.length) line = 'Nothing matches this selection — widen the topics or tags.';
+  else if (study.length === 'due' && dueN === 0) line = 'Nothing is due yet for this selection. Pick a fixed length to study ahead, or come back later.';
+  h += '<div class="sticky-start"><button class="btn primary lg block" type="button" data-action="study-start"' + (canStart ? '' : ' disabled') + '>Start</button>' +
+    '<p class="tiny" style="text-align:center;margin-top:8px">' + esc(line) + '</p></div>';
   return h;
 }
 function studyPool() {
@@ -858,6 +1061,120 @@ function studyPool() {
     if (study.tags.length && !study.tags.some(function (t) { return hasTag(i, t); })) return false;
     return true;
   });
+}
+
+/* ---- Learn ---- */
+function lessonMatches(l, q) {
+  if (!q) return true;
+  var hay = (l.title + ' ' + (Array.isArray(l.keywords) ? l.keywords.join(' ') : '') + ' ' + (TOPIC_LABEL[l.topic] || '')).toLowerCase();
+  return q.split(/\s+/).filter(Boolean).every(function (w) { return hay.indexOf(w) !== -1; });
+}
+function tagChips(tags) {
+  if (!Array.isArray(tags) || !tags.length) return '';
+  return tags.map(function (t) { return '<span class="tagchip">' + esc(TAG_LABEL[t] || t) + '</span>'; }).join('');
+}
+function lessonRowHtml(l) {
+  var done = lessonRead(l.id);
+  var refs = Array.isArray(l.refs) ? l.refs.length : 0;
+  return '<button class="lesson-row' + (done ? ' done' : '') + '" type="button" data-action="open-lesson" data-id="' + esc(l.id) + '"' + (done ? ' aria-label="' + esc(l.title) + ', read"' : '') + '>' +
+    '<span class="ttl">' + esc(l.title) + '</span>' +
+    '<span class="read" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span>' +
+    '<span class="meta"><span>' + esc(l.minutes || '?') + ' min</span><span>' + refs + ' ref' + (refs === 1 ? '' : 's') + '</span>' + tagChips(l.tags) + '</span></button>';
+}
+function learnListHtml() {
+  var q = learnQ.trim().toLowerCase();
+  var h = '', shown = 0;
+  TOPICS.forEach(function (t) {
+    var ls = lessonsByTopic(t[0]).filter(function (l) { return lessonMatches(l, q); });
+    if (!ls.length) return;
+    shown += ls.length;
+    h += '<div class="lesson-group"><h2>' + esc(t[1]) + '</h2><div class="lesson-list">' + ls.map(lessonRowHtml).join('') + '</div></div>';
+  });
+  /* Lessons whose topic is unknown still get listed rather than silently dropped. */
+  var orphans = LESSONS.filter(function (l) { return !TOPIC_LABEL[l.topic] && lessonMatches(l, q); });
+  if (orphans.length) { shown += orphans.length; h += '<div class="lesson-group"><h2>Other</h2><div class="lesson-list">' + orphans.map(lessonRowHtml).join('') + '</div></div>'; }
+  if (!shown) h += '<div class="empty"><p>' + (q ? 'No lessons match “' + esc(learnQ.trim()) + '”.' : 'No lessons loaded yet.') + '</p></div>';
+  return h;
+}
+function viewLearnIndex() {
+  var n = lessonsReadCount(), N = LESSONS.length;
+  var h = '<h1>Learn</h1><p class="muted small" style="margin-top:4px">Short reviews that restore a topic fast. Read one, then quiz it.</p>';
+  if (!N) return h + '<div class="card empty" style="margin-top:24px"><h2>No lessons loaded</h2><p>The lesson files (data-lessons-a.js, data-lessons-b.js) are missing or empty.</p></div>';
+  h += '<div class="learn-prog"><div class="bar" aria-hidden="true"><i class="' + (n === N ? 'good' : 'cyan') + '" style="width:' + pct(n, N) + '%"></i></div><span>' + n + ' of ' + N + ' lessons read</span></div>';
+  h += '<div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>' +
+    '<label class="sr" for="learn-q">Search lessons</label><input type="text" id="learn-q" data-action="learn-q" placeholder="Search lessons" autocomplete="off" autocorrect="off" autocapitalize="off" value="' + esc(learnQ) + '"></div>';
+  h += '<div id="learn-list">' + learnListHtml() + '</div>';
+  return h;
+}
+function blockHtml(b) {
+  if (!b || typeof b !== 'object') return '';
+  if (typeof b.h === 'string') return '<h3>' + escMd(b.h) + '</h3>';
+  if (typeof b.p === 'string') return '<p>' + escMd(b.p) + '</p>';
+  if (Array.isArray(b.ul)) return '<ul>' + b.ul.map(function (x) { return '<li>' + escMd(x) + '</li>'; }).join('') + '</ul>';
+  if (Array.isArray(b.ol)) return '<ol>' + b.ol.map(function (x) { return '<li>' + escMd(x) + '</li>'; }).join('') + '</ol>';
+  if (b.table && typeof b.table === 'object') {
+    var t = b.table, head = Array.isArray(t.head) ? t.head : [], rows = Array.isArray(t.rows) ? t.rows : [];
+    var h = '<div class="tbl-wrap"><table>';
+    if (head.length) h += '<thead><tr>' + head.map(function (x) { return '<th>' + escMd(x) + '</th>'; }).join('') + '</tr></thead>';
+    h += '<tbody>' + rows.map(function (r) { return '<tr>' + (Array.isArray(r) ? r : [r]).map(function (c) { return '<td>' + escMd(c) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+    return h;
+  }
+  if (typeof b.callout === 'string') {
+    var kind = b.kind === 'warn' || b.kind === 'memo' ? b.kind : 'tip';
+    var lbl = { tip: 'Tip', warn: 'Watch out', memo: 'Remember' }[kind];
+    return '<div class="callout ' + kind + '"><span class="k">' + lbl + '</span>' + escMd(b.callout) + '</div>';
+  }
+  if (b.memo && typeof b.memo === 'object') {
+    return '<div class="memo-card"><div class="lbl">Mnemonic</div><div class="big">' + esc(b.memo.title || '') + '</div><div class="txt">' + escMd(b.memo.text || '') + '</div></div>';
+  }
+  return '';
+}
+function viewLesson(id) {
+  var l = lessonById(id);
+  if (!l) return viewLearnIndex();
+  var done = lessonRead(l.id);
+  var h = '<button class="btn ghost" type="button" data-action="learn-back" style="padding-left:6px;min-height:40px">' +
+    '<svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M15 6l-6 6 6 6"/></svg>All lessons</button>';
+  h += '<div class="lesson-head"><div class="topic">' + esc(TOPIC_LABEL[l.topic] || l.topic) + '</div><h1>' + esc(l.title) + '</h1>' +
+    '<div class="pills"><span class="pill">' + esc(l.minutes || '?') + ' min read</span>' +
+    (Array.isArray(l.refs) ? l.refs.map(function (r) { return '<span class="pill">' + esc(r) + '</span>'; }).join('') : '') +
+    tagChips(l.tags) + '</div></div>';
+  h += '<article class="lesson-body">' + l.body.map(blockHtml).join('') + '</article>';
+  var nQuiz = lessonQuizItems(l).length;
+  h += '<div class="lesson-foot">' +
+    '<button class="btn lg block' + (done ? ' good' : '') + '" type="button" data-action="lesson-read" data-id="' + esc(l.id) + '" aria-pressed="' + done + '">' +
+    (done ? '<svg viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"><path d="M5 12l5 5 9-10"/></svg>Read — tap to unmark' : 'Mark as read') + '</button>' +
+    '<button class="btn primary lg block" type="button" data-action="lesson-quiz" data-id="' + esc(l.id) + '"' + (nQuiz ? '' : ' disabled') + '>Quiz this lesson' + (nQuiz ? ' (' + nQuiz + ')' : '') + '</button>' +
+    '<button class="btn ghost block" type="button" data-action="learn-back">Back to all lessons</button></div>';
+  return h;
+}
+function toggleLessonRead(id) {
+  if (!store.lessonsRead || typeof store.lessonsRead !== 'object') store.lessonsRead = {};
+  if (store.lessonsRead[id]) delete store.lessonsRead[id];
+  else store.lessonsRead[id] = Date.now();
+  save(); render();
+}
+function quizLesson(id) {
+  var l = lessonById(id);
+  if (!l) return;
+  var items = lessonQuizItems(l);
+  if (!items.length) { toast('No questions match this lesson yet.'); return; }
+  startSession(items, { title: l.title });
+}
+/* Open a lesson from inside a session; confirm first if the session is mid-way. */
+function leaveToLesson(id) {
+  if (!session) { openLesson(id); return; }
+  var mid = session.phase !== 'summary' && session.idx > 0 && session.idx < session.queue.length;
+  if (mid) {
+    confirmDialog('Leave this session?', 'Answers you have already given are saved. The lesson opens in the Learn tab.', 'Open lesson').then(function (ok) { if (ok) { closeSession(true); openLesson(id); } });
+    return;
+  }
+  closeSession(true); openLesson(id);
+}
+function lessonLinkHtml(it) {
+  var l = lessonForItem(it);
+  if (!l) return '';
+  return '<button class="lesson-link" type="button" data-action="s-lesson" data-id="' + esc(l.id) + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10.5 5 8.3 4.5 3 4.5v13c5.3 0 7.5.5 9 2 1.5-1.5 3.7-2 9-2v-13c-5.3 0-7.5.5-9 2z"/><path d="M12 6.5v13"/></svg>Review: ' + esc(l.title) + '</button>';
 }
 
 /* ---- Aircraft ---- */
@@ -925,15 +1242,20 @@ function viewStats() {
     '<div class="stat"><b>' + total + '</b><span>items in the bank</span></div>' +
     '<div class="stat"><b>' + seen + '</b><span>seen at least once</span></div>' +
     '<div class="stat"><b>' + mastered + '</b><span>mastered (21+ day interval)</span></div>' +
-    '<div class="stat"><b>' + (att ? pct(corr, att) + '%' : '—') + '</b><span>accuracy, all attempts</span></div></div>';
+    '<div class="stat"><b>' + (att ? pct(corr, att) + '%' : '—') + '</b><span>accuracy, all attempts</span></div>' +
+    (LESSONS.length ? '<div class="stat"><b>' + lessonsReadCount() + ' / ' + LESSONS.length + '</b><span>lessons read</span></div>' : '') +
+    '<div class="stat"><b>' + (store.sessions || 0) + '</b><span>sessions completed</span></div></div>';
   h += '<div class="card" style="margin-top:14px"><div class="bar" aria-label="Overall progress"><i class="good" style="width:' + pct(mastered, total) + '%"></i></div>' +
     '<p class="tiny" style="margin-top:8px">' + mastered + ' mastered · ' + learning + ' learning · ' + (total - seen) + ' new</p></div>';
   h += '<div class="section"><div class="section-head"><h2>By topic</h2><span class="tiny">mastered / learning</span></div><div class="card">';
   TOPICS.forEach(function (t) {
     var p = topicProgress(t[0]);
-    if (!p.total) return;
+    var ls = lessonsByTopic(t[0]);
+    if (!p.total && !ls.length) return;
+    var lr = ls.filter(function (l) { return lessonRead(l.id); }).length;
     h += '<div class="topic-row"><span>' + esc(t[1]) + '</span><span class="num">' + p.mastered + ' / ' + (p.seen - p.mastered) + ' of ' + p.total + '</span>' +
-      '<div class="bar" style="position:relative"><i class="cyan" style="width:' + pct(p.seen, p.total) + '%;position:absolute;left:0;top:0"></i><i class="good" style="width:' + p.pct + '%;position:absolute;left:0;top:0"></i></div></div>';
+      '<div class="bar" style="position:relative"><i class="cyan" style="width:' + pct(p.seen, p.total) + '%;position:absolute;left:0;top:0"></i><i class="good" style="width:' + p.pct + '%;position:absolute;left:0;top:0"></i></div>' +
+      (ls.length ? '<span class="sub">Lessons read: ' + lr + ' / ' + ls.length + '</span>' : '') + '</div>';
   });
   h += '</div></div>';
   h += '<div class="section"><div class="section-head"><h2>By type</h2></div><div class="card">';
@@ -1003,8 +1325,8 @@ function startDiagnostic() {
   var pool = BANK.filter(function (i) { return i.type === 'mcq' || i.type === 'scenario'; });
   var unseen = shuffle(pool.filter(function (i) { return statusOf(i.id) === 'new'; }));
   var seen = shuffle(pool.filter(function (i) { return statusOf(i.id) !== 'new'; }));
-  var items = unseen.concat(seen).slice(0, 20);
-  startSession(shuffle(items), { keepOrder: true, title: 'Diagnostic', diagnostic: true });
+  var items = unseen.concat(seen).slice(0, 20);   /* fewer than 20 in the bank: use them all */
+  startSession(items, { keepOrder: false, title: 'Diagnostic', diagnostic: true });
 }
 function startStudy() {
   var pool = studyPool();
@@ -1106,7 +1428,7 @@ function mcqHtml(it, head) {
     var correctLetter = 'ABCD'[order.indexOf(it.a)];
     h += '<p class="verdict ' + (ok ? 'ok' : 'no') + '">' + (ok ? 'Correct' : 'Not quite — ' + correctLetter + ' is right') + '</p>';
     if (it.exp) h += '<p class="exp">' + esc(it.exp) + '</p>';
-    h += sourcePill(it);
+    h += sourcePill(it) + lessonLinkHtml(it);
   }
   h += '</div>';
   if (picked !== undefined) h += '<div class="session-actions"><button class="btn primary lg block" type="button" data-action="s-next" id="s-next">Next</button></div>';
@@ -1173,7 +1495,7 @@ function summaryHtml() {
     if (weak.length) {
       h += '<div class="card" style="margin-top:14px"><h3>Start with these</h3><p class="muted small" style="margin:4px 0 12px">Your weakest topics from this diagnostic. Tap one to study it.</p><div class="stack">';
       weak.forEach(function (t) {
-        h += '<button class="btn block" type="button" data-action="s-topic" data-topic="' + t + '" style="justify-content:space-between">' + esc(TOPIC_LABEL[t] || t) + '<span class="muted small">' + byTopic[t].ok + ' / ' + byTopic[t].n + '</span></button>';
+        h += '<button class="btn block" type="button" data-action="s-topic" data-topic="' + esc(t) + '" style="justify-content:space-between">' + esc(TOPIC_LABEL[t] || t) + '<span class="muted small">' + byTopic[t].ok + ' / ' + byTopic[t].n + '</span></button>';
       });
       h += '</div></div>';
     } else {
@@ -1192,7 +1514,7 @@ function summaryHtml() {
       var it = BANK.filter(function (i) { return i.id === r.id; })[0];
       var txt = it ? (it.q || it.front || '') : r.id;
       if (txt.length > 140) txt = txt.slice(0, 140) + '…';
-      h += '<div class="miss"><div class="q">' + esc(txt) + '</div><div class="t">' + esc(TOPIC_LABEL[r.topic] || r.topic) + ' · ' + esc(r.id) + '</div></div>';
+      h += '<div class="miss"><div class="q">' + esc(txt) + '</div><div class="t">' + esc(TOPIC_LABEL[r.topic] || r.topic) + ' · ' + esc(r.id) + '</div>' + (it ? lessonLinkHtml(it) : '') + '</div>';
     });
     h += '</div></div>';
   }
@@ -1259,16 +1581,27 @@ function exportProgress() {
 function importProgress(file) {
   if (!file) return;
   var reader = new FileReader();
+  reader.onerror = function () { toast('Could not read that file.'); };
   reader.onload = function () {
-    try {
-      var data = JSON.parse(reader.result);
-      if (!data || typeof data !== 'object' || typeof data.items !== 'object') throw new Error('shape');
-      confirmDialog('Replace progress?', 'This replaces everything saved on this device with the imported file.', 'Import').then(function (ok) {
-        if (!ok) return;
-        store = Object.assign(defaultStore(), data);
-        save(); applyTheme(); render(); toast('Progress imported');
-      });
-    } catch (e) { toast('That file is not a Recurrent export.'); }
+    var data;
+    try { data = JSON.parse(reader.result); } catch (e) { toast('That file is not JSON.'); return; }
+    if (!isObj(data) || !isObj(data.items)) { toast('That file is not a Recurrent export.'); return; }
+    var inc = migrate(data);
+    var nItems = Object.keys(inc.items).length, nLessons = Object.keys(inc.lessonsRead).length;
+    confirmDialog('Import progress?', 'Scheduling for ' + nItems + ' items and ' + nLessons + ' read lessons will be merged into what is on this device. Nothing here is deleted; where both have an entry, the imported one wins.', 'Import').then(function (ok) {
+      if (!ok) return;
+      var merged = migrate(store);
+      Object.keys(inc.items).forEach(function (id) { if (isObj(inc.items[id])) merged.items[id] = Object.assign(newState(), inc.items[id]); });
+      Object.keys(inc.lessonsRead).forEach(function (id) { var v = inc.lessonsRead[id]; if (v) merged.lessonsRead[id] = typeof v === 'number' ? v : Date.now(); });
+      Object.keys(inc.checklist).forEach(function (id) { if (isObj(inc.checklist[id])) merged.checklist[id] = Object.assign({}, merged.checklist[id], inc.checklist[id]); });
+      if (inc.notes && !merged.notes) merged.notes = inc.notes;
+      else if (inc.notes && merged.notes && inc.notes !== merged.notes) merged.notes = merged.notes + '\n\n' + inc.notes;
+      if (inc.medical) merged.medical = inc.medical;
+      if (inc.theme === 'light' || inc.theme === 'dark' || inc.theme === 'system') merged.theme = inc.theme;
+      merged.sessions = Math.max(merged.sessions, inc.sessions);
+      store = merged;
+      save(); applyTheme(); render(); toast('Progress imported');
+    });
   };
   reader.readAsText(file);
 }
@@ -1305,6 +1638,11 @@ document.addEventListener('click', function (e) {
     case 'study-len': { var lv = t.getAttribute('data-v'); study.length = lv === 'due' ? 'due' : Number(lv); render(); break; }
     case 'study-tag': { var tv = t.getAttribute('data-v'); var ti = study.tags.indexOf(tv); if (ti === -1) study.tags.push(tv); else study.tags.splice(ti, 1); render(); break; }
     case 'study-start': startStudy(); break;
+    case 'open-lesson': openLesson(t.getAttribute('data-id')); break;
+    case 'learn-back': go('learn'); break;
+    case 'lesson-read': toggleLessonRead(t.getAttribute('data-id')); break;
+    case 'lesson-quiz': quizLesson(t.getAttribute('data-id')); break;
+    case 's-lesson': leaveToLesson(t.getAttribute('data-id')); break;
     case 'quiz-aircraft': {
       var tag = t.getAttribute('data-tag');
       startSession(orderSmart(BANK.filter(function (i) { return hasTag(i, tag); }), 20), { keepOrder: true, title: tag === 'c172' ? 'Cessna 172S' : 'PA-44 Seminole' });
@@ -1344,7 +1682,14 @@ document.addEventListener('change', function (e) {
 });
 document.addEventListener('input', function (e) {
   var t = e.target;
-  if (t && t.getAttribute && t.getAttribute('data-action') === 'notes') { store.notes = t.value; save(); }
+  if (!t || !t.getAttribute) return;
+  var a = t.getAttribute('data-action');
+  if (a === 'notes') { store.notes = t.value; save(); }
+  else if (a === 'learn-q') {
+    learnQ = t.value;
+    var list = document.getElementById('learn-list');
+    if (list) list.innerHTML = learnListHtml();   /* re-render only the list so the input keeps focus */
+  }
 });
 document.addEventListener('keydown', function (e) {
   var tag = (e.target && e.target.tagName) || '';
@@ -1358,17 +1703,22 @@ document.addEventListener('keydown', function (e) {
   var k = e.key;
   if (k === 'Escape') { e.preventDefault(); closeSession(false); return; }
   if (session.phase === 'summary') return;
+  /* A focused real button handles Space/Enter itself (click -> data-action); without this
+     guard a Space on, say, the Next button would both click it and flip/advance here. */
+  var active = document.activeElement;
+  var onButton = !!(active && active.tagName === 'BUTTON');
+  if ((k === ' ' || k === 'Enter') && onButton) return;
   var it = current();
   if (it.type === 'mcq' || it.type === 'scenario') {
     var idx = '1234'.indexOf(k); if (idx === -1) idx = 'abcd'.indexOf(k.toLowerCase());
     if (idx !== -1 && session.ui.picked === undefined) { e.preventDefault(); pick(idx); return; }
     if ((k === 'Enter' || k === ' ') && session.ui.picked !== undefined) { e.preventDefault(); nextItem(); return; }
   } else if (it.type === 'card') {
-    if (k === ' ' || k === 'Enter') { if (!session.ui.flipped) { e.preventDefault(); flip(); } else if (k === 'Enter' && e.target.tagName !== 'BUTTON') { e.preventDefault(); rate('good'); } return; }
+    if (k === ' ' || k === 'Enter') { if (!session.ui.flipped) { e.preventDefault(); flip(); } else if (k === 'Enter') { e.preventDefault(); rate('good'); } return; }
     var gi = '1234'.indexOf(k);
     if (gi !== -1 && session.ui.flipped) { e.preventDefault(); rate(['again', 'hard', 'good', 'easy'][gi]); }
   } else if (it.type === 'oral') {
-    if ((k === ' ' || k === 'Enter') && !session.ui.revealed && e.target.tagName !== 'BUTTON') { e.preventDefault(); reveal(); return; }
+    if ((k === ' ' || k === 'Enter') && !session.ui.revealed) { e.preventDefault(); reveal(); return; }
     if (session.ui.revealed) {
       if (k === '1') { e.preventDefault(); rate('again'); }
       else if (k === '2' || k === '3') { e.preventDefault(); rate('good'); }
@@ -1386,10 +1736,11 @@ if (window.matchMedia) {
 load();
 applyTheme();
 loadBank();
-render();
+loadLessons();
+if (location.hash.indexOf('#learn') === 0) routeFromHash(); else render();
 
 /* expose a little for debugging / tests */
-window.Recurrent = { gradeState: gradeState, newState: newState, orderSmart: orderSmart, STORE_KEY: STORE_KEY };
+window.Recurrent = { gradeState: gradeState, newState: newState, orderSmart: orderSmart, STORE_KEY: STORE_KEY, lessonQuizItems: lessonQuizItems, lessonForItem: lessonForItem, migrate: migrate, bank: function () { return BANK; }, lessons: function () { return LESSONS; } };
 })();
 </script>
 </body>

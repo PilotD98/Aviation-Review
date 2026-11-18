@@ -275,7 +275,7 @@ window.BANK.push(
       "Any applicant with 1,000 hours who has completed the ATP CTP course"
     ],
     a: 0,
-    exp: "61.160 sets the reduced totals: 750 hours for military pilots (61.160(a)), 1,000 hours for a bachelor's degree with an aviation major and at least 60 semester credit hours of aviation coursework (61.160(b)), and 1,250 hours for either a bachelor's with 30-59 hours of aviation coursework (61.160(c)) or an associate's degree with an aviation major (61.160(d)). All R-ATP routes require at least age 21 and 200 hours cross-country (versus 23 and 500 cross-country for the unrestricted ATP under 61.153 and 61.159). An R-ATP holder may serve as SIC but not PIC in Part 121 operations until the unrestricted ATP is earned."
+    exp: "61.160 sets the reduced totals: 750 hours for military pilots (61.160(a)), 1,000 hours for a bachelor's degree with an aviation major and at least 60 semester credit hours of aviation coursework (61.160(b)), and 1,250 hours for either an associate's degree with an aviation major (61.160(c)) or a bachelor's with 30-59 hours of aviation coursework (61.160(d)). All R-ATP routes require at least age 21 and 200 hours cross-country (versus 23 and 500 cross-country for the unrestricted ATP under 61.153 and 61.159). An R-ATP holder may serve as SIC but not PIC in Part 121 operations until the unrestricted ATP is earned."
   },
   {
     id: "ops-mcq-024", type: "mcq", topic: "ops", ref: "14 CFR 61.156", tags: ["atp"],
@@ -410,7 +410,7 @@ window.BANK.push(
   {
     id: "ops-card-007", type: "card", topic: "ops", ref: "14 CFR 117.3, 117.19, 117.25, 117.27", tags: ["atp"],
     front: "Part 117 key definitions and limits: acclimated, theater, FDP extension, rest, consecutive nights.",
-    back: "Acclimated: in a theater for 72 hours, or given 36 consecutive hours of rest. Theater: departure and arrival points within 60 degrees of longitude.\nFDP extension (117.19): unaugmented up to 2 hr for unforeseen circumstances; more than 30 min needs PIC + certificate holder concurrence, only once before the next 30-hr rest, reported to FAA within 10 days.\nRest (117.25): 10 consecutive hr with 8 hr uninterrupted sleep opportunity before FDP; 30 consecutive hr free in any 168 hr; 56 hr (3 physiological nights) on return to base after >60 degrees longitude for more than 168 hr.\nConsecutive nights (117.27): max 3 FDPs infringing 0200-0459, or 5 with a 2-hr mid-duty sleep opportunity."
+    back: "Acclimated: in a theater for 72 hours, or given 36 consecutive hours of rest. Theater: departure and arrival points within 60 degrees of longitude.\nFDP extension (117.19): unaugmented up to 2 hr for unforeseen circumstances; more than 30 min needs PIC + certificate holder concurrence, only once before the next 30-hr rest, reported to FAA within 10 days.\nRest (117.25): 10 consecutive hr with 8 hr uninterrupted sleep opportunity before FDP; 30 consecutive hr free in any 168 hr; 56 hr (3 physiological nights) on return to base after >60 degrees longitude for more than 168 hr.\nConsecutive nights (117.27): max 3 FDPs infringing the WOCL (0200-0559), or 5 with a 2-hr mid-duty sleep opportunity."
   },
   {
     id: "ops-card-008", type: "card", topic: "ops", ref: "14 CFR 61.153, 61.159, 121.383(c)", tags: ["atp"],

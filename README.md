@@ -11,20 +11,22 @@ Progress is saved on each device in `localStorage` (key `recurrent.v1`). Use **S
 
 ## What's in it
 
-- **512 items** across 12 topics: Regulations (61/91), IFR Procedures, Charts & Plates, Navigation & GPS, Commercial Ops (135/121/117), Weather, Aerodynamics & Performance, Multi-Engine, Aircraft Systems, Airspace & Airport Ops, Aeromedical & ADM, Instructing (FOI).
-- 287 multiple-choice, 105 flashcards, 45 scenarios, 75 oral-exam questions.
+- **700 items** across 16 topics: Regulations (61/91), IFR Procedures, Charts & Plates, Navigation & GPS, Commercial Ops (135/121/117), Weather, Aerodynamics, Multi-Engine, Aircraft Systems, Airspace & Airport Ops, Aeromedical & ADM, Performance & W&B, Comms & ATC, Emergency Procedures, High-Altitude & Turbine, Instructing (FOI).
+- 415 multiple-choice, 136 flashcards, 58 scenarios, 91 oral-exam questions.
+- **Learn tab**: 46 short review lessons (one topic each, with mnemonics, tables and a "Quiz this lesson" button), aligned to the Commercial and Instrument ACS and the FAA knowledge-test style.
 - Every item carries an FAA source (CFR section, AIM paragraph, or handbook chapter) shown as a **Source** pill with the item id.
 - Aircraft reference cards for the Cessna 172S and Piper PA-44-180 Seminole.
 - "Back to current" checklist (flight review, IPC, medical, 90-day currency, documents).
-- Tag filters: IPC, flight review, ATP, Part 135, CFI, C172, PA-44.
+- Tag filters: IPC, flight review, ATP, Part 135, CFI, C172, PA-44, Commercial ACS, Instrument ACS, Knowledge test.
 
 ## Files
 
 | File | Purpose |
 |---|---|
 | `index.html` | The whole app (UI + logic) |
-| `data-*.js` | Question bank, one file per topic group |
-| `SPEC.md` | Build spec, schema, and the verified aircraft/regulatory facts the bank was written against |
+| `data-*.js` | Question bank, one file per topic group (`data-more.js` holds the v2 topics) |
+| `data-lessons-*.js` | Learn-tab lessons |
+| `SPEC.md`, `SPEC-v2.md` | Build specs, schemas, and the verified aircraft/regulatory facts the content was written against |
 
 ## Reporting a wrong question
 
