@@ -1,5 +1,9 @@
 # Recurrent — Aviation Knowledge Refresher
 
+## ✈️ [Open the app → pilotd98.github.io/Aviation-Review](https://pilotd98.github.io/Aviation-Review/)
+
+On iPhone: open that link in Safari, tap Share → **Add to Home Screen**.
+
 A browser-based study app for a commercial multi-engine, instrument-rated pilot getting back into aviation. Flashcards, quizzes, scenario questions, and an oral-exam mode with spaced repetition. Runs entirely in the browser; no server, no accounts.
 
 ## Run it
